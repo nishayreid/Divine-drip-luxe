@@ -1,37 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DivineDripLuxe</title>
   <style>
+    /* --- COLORS & FONTS --- */
+    :root {
+      --blush: #f5d6d0;
+      --beige: #f9f4ef;
+      --nude: #f3e5dc;
+      --cream: #fffaf5;
+      --text: #4b3b3b;
+      --accent: #e4b8aa;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f8f6f9;
-      color: #222;
+      background-color: var(--cream);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding: 40px;
     }
-    h1 {
-      color: #d9a7c7;
+
+    header {
+      background: linear-gradient(to bottom right, var(--blush), var(--nude));
+      padding: 80px 20px;
     }
-    a {
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #6a5555;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--text);
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    p {
+      line-height: 1.6;
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+    }
+
+    .button {
       display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #d9a7c7;
+      background-color: var(--accent);
       color: white;
       text-decoration: none;
+      padding: 12px 25px;
       border-radius: 8px;
+      margin-top: 20px;
+      transition: background 0.3s;
     }
-    a:hover {
-      background: #c785b3;
+
+    .button:hover {
+      background-color: var(--text);
+    }
+
+    /* --- GALLERY --- */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: var(--nude);
+      padding: 40px 20px;
+      font-size: 0.95rem;
+      color: #5b4a4a;
     }
   </style>
 </head>
+
 <body>
-  <h1>Welcome to DivineDripLuxe ✨</h1>
-  <p>Your destination for everyday essentials with a luxe touch.</p>
-  <a href="https://instagram.com/divinedripluxe" target="_blank">Shop via Instagram 💕</a>
+  <header>
+    <h1>DivineDripLuxe ✨</h1>
+    <p>Your destination for modern essentials with a luxe touch — made to elevate your everyday.</p>
+    <a class="button" href="https://www.instagram.com/divinedripluxe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+      Shop via Instagram 💖
+    </a>
+  </header>
+
+  <section id="about">
+    <h2>About DivineDripLuxe</h2>
+    <p>
+      At DivineDripLuxe, we believe everyday essentials deserve a touch of elegance. 
+      Our brand was created to bring you timeless, practical, and aesthetic must-haves 
+      that make self-care feel luxurious — because you deserve it.
+    </p>
+  </section>
+
+  <section id="how-to-order">
+    <h2>How to Order</h2>
+    <p>
+      Ordering from DivineDripLuxe is simple:  
+      <br>💬 Send us a DM on Instagram with the items you love.  
+      <br>📦 We’ll confirm availability and guide you through the payment process.  
+      <br>✨ Once confirmed, your order will be carefully prepared and shipped with care.
+    </p>
+  </section>
+
+  <section id="payment">
+    <h2>Payment & Delivery</h2>
+    <p>
+      We currently accept several secure payment methods.  
+      For full details, please check our “Payment Method” and “Delivery” highlights on Instagram.
+      <br><br>
+      💳 Payments are processed safely.  
+      🚚 Delivery updates will be shared once your order ships.
+    </p>
+  </section>
+
+  <section id="gallery">
+    <h2>Our Collection</h2>
+    <p>Here’s a peek at our favorite DivineDripLuxe essentials 💫</p>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x400?text=Product+1" alt="Product 1">
+      <img src="https://via.placeholder.com/400x400?text=Product+2" alt="Product 2">
+      <img src="https://via.placeholder.com/400x400?text=Product+3" alt="Product 3">
+      <img src="https://via.placeholder.com/400x400?text=Product+4" alt="Product 4">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Get in Touch</h2>
+    <p>
+      Have questions or need help with an order?  
+      Reach out anytime — we’d love to assist you.
+    </p>
+    <a class="button" href="https://www.instagram.com/divinedripluxe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+      Message Us on Instagram 💬
+    </a>
+  </section>
+
+  <footer>
+    © 2025 DivineDripLuxe · All Rights Reserved  
+  </footer>
 </body>
 </html>
