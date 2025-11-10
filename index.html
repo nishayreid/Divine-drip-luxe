@@ -1,4 +1,3 @@
-index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@ index.html
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DivineDripLuxe</title>
   <style>
-    /* --- COLORS & FONTS --- */
     :root {
       --blush: #f5d6d0;
       --beige: #f9f4ef;
@@ -16,159 +14,135 @@ index.html
       --accent: #e4b8aa;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--cream);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-      text-align: center;
+    /* General */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--cream); color: var(--text); }
+    a { text-decoration: none; color: inherit; }
+
+    /* Navigation */
+    nav { display: flex; justify-content: center; align-items: center; background: var(--nude); padding: 15px 20px; position: relative; }
+    nav .nav-links { display: flex; gap: 30px; }
+    nav .nav-links a { font-weight: 500; padding: 5px 10px; transition: color 0.3s; }
+    nav .nav-links a:hover { color: var(--accent); }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+    .hamburger div { width: 25px; height: 3px; background-color: var(--text); transition: 0.3s; }
+
+    /* Mobile menu */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--nude); padding: 20px 0; gap: 20px; }
+      .nav-links.show { display: flex; }
+      .hamburger { display: flex; }
     }
 
-    header {
-      background: linear-gradient(to bottom right, var(--blush), var(--nude));
-      padding: 80px 20px;
-    }
+    /* Header / Hero */
+    header { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(to bottom right, var(--blush), var(--nude)); padding: 100px 20px; }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; margin-bottom: 20px; max-width: 700px; }
+    .button { display: inline-block; background-color: var(--accent); color: white; padding: 12px 25px; border-radius: 10px; font-weight: 500; transition: background 0.3s; }
+    .button:hover { background-color: var(--text); }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: var(--text);
-    }
+    /* Sections */
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; text-align: center; }
+    h2 { font-size: 2rem; margin-bottom: 15px; }
+    p { font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: auto; }
 
-    header p {
-      font-size: 1.2rem;
-      color: #6a5555;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
+    .img-container { position: relative; }
+    .img-container img { width: 100%; height: 260px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .img-container img:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.25); color: white; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 1rem; border-radius: 15px; opacity: 0; transition: opacity 0.3s; }
+    .img-container:hover .overlay { opacity: 1; }
 
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+    /* Footer */
+    footer { background: var(--nude); padding: 40px 20px; font-size: 0.95rem; color: #5b4a4a; text-align: center; margin-top: 40px; }
 
-    h2 {
-      color: var(--text);
-      margin-bottom: 15px;
-      font-size: 1.8rem;
-    }
-
-    p {
-      line-height: 1.6;
-      max-width: 700px;
-      margin: auto;
-      font-size: 1.1rem;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: var(--accent);
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      margin-top: 20px;
-      transition: background 0.3s;
-    }
-
-    .button:hover {
-      background-color: var(--text);
-    }
-
-    /* --- GALLERY --- */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      background: var(--nude);
-      padding: 40px 20px;
-      font-size: 0.95rem;
-      color: #5b4a4a;
-    }
   </style>
 </head>
-
 <body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#how-to-order">How to Order</a>
+      <a href="#payment">Payment & Delivery</a>
+      <a href="#gallery">Shop</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
   <header>
     <h1>DivineDripLuxe ✨</h1>
-    <p>Your destination for modern essentials with a luxe touch — made to elevate your everyday.</p>
-    <a class="button" href="https://www.instagram.com/divinedripluxe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-      Shop via Instagram 💖
-    </a>
+    <p>Elevate your everyday essentials with a touch of luxe. Timeless, practical, and aesthetic must-haves curated just for you.</p>
+    <a class="button" href="https://www.instagram.com/divinedripluxe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Shop via Instagram 💖</a>
   </header>
 
+  <!-- About Section -->
   <section id="about">
     <h2>About DivineDripLuxe</h2>
-    <p>
-      At DivineDripLuxe, we believe everyday essentials deserve a touch of elegance. 
-      Our brand was created to bring you timeless, practical, and aesthetic must-haves 
-      that make self-care feel luxurious — because you deserve it.
-    </p>
+    <p>DivineDripLuxe was created for people who love elegance in everyday essentials. We focus on timeless, practical, and beautiful items that make your routine feel luxurious.</p>
   </section>
 
+  <!-- How to Order -->
   <section id="how-to-order">
     <h2>How to Order</h2>
-    <p>
-      Ordering from DivineDripLuxe is simple:  
-      <br>💬 Send us a DM on Instagram with the items you love.  
-      <br>📦 We’ll confirm availability and guide you through the payment process.  
-      <br>✨ Once confirmed, your order will be carefully prepared and shipped with care.
-    </p>
+    <p>💬 Send us a DM on Instagram with your desired items.<br>📦 We confirm availability and guide you through payment.<br>✨ Once confirmed, your order is packaged with care and shipped to you.</p>
   </section>
 
+  <!-- Payment & Delivery -->
   <section id="payment">
     <h2>Payment & Delivery</h2>
-    <p>
-      We currently accept several secure payment methods.  
-      For full details, please check our “Payment Method” and “Delivery” highlights on Instagram.
-      <br><br>
-      💳 Payments are processed safely.  
-      🚚 Delivery updates will be shared once your order ships.
-    </p>
+    <p>We accept secure payment methods. For full details, check our “Payment Method” and “Delivery” highlights on Instagram.<br>💳 Payments are safe and secure.<br>🚚 Delivery updates are provided once your order ships.</p>
   </section>
 
+  <!-- Featured Collection / Gallery -->
   <section id="gallery">
-    <h2>Our Collection</h2>
-    <p>Here’s a peek at our favorite DivineDripLuxe essentials 💫</p>
+    <h2>Featured Collection</h2>
+    <p>Discover some of our favorite DivineDripLuxe essentials 💫</p>
     <div class="gallery">
-   https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4295.jpeg
-
-     https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4302.jpeg
-
-     https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4311.jpeg
-
-     https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4317.jpeg
-
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4327.jpeg" alt="Product 1"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4295.jpeg" alt="Product 2"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4302.jpeg" alt="Product 3"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4311.jpeg" alt="Product 4"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4317.jpeg" alt="Product 5"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/d1b54885-1100-482e-9381-89af0d4379fc.jpeg" alt="Product 6"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/a706cf8a-d76c-4fa2-87cf-7f9f476f34ae.jpeg" alt="Product 7"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/0038b0c5-0ba9-4498-8a89-33f668ccde1b.jpeg" alt="Product 8"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/02073ee5-41ca-43f7-92e8-0fe744b190fd.jpeg" alt="Product 9"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4304.jpeg" alt="Product 10"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4318.jpeg" alt="Product 11"><div class="overlay">View Product</div></div>
+      <div class="img-container"><img src="https://github.com/nishayreid/Divine-drip-luxe/raw/main/IMG_4321.jpeg" alt="Product 12"><div class="overlay">View Product</div></div>
     </div>
+    <a class="button" href="#gallery" style="margin-top: 25px; display: inline-block;">Shop All Products 🛍️</a>
   </section>
 
+  <!-- Contact Section -->
   <section id="contact">
     <h2>Get in Touch</h2>
-    <p>
-      Have questions or need help with an order?  
-      Reach out anytime — we’d love to assist you.
-    </p>
-    <a class="button" href="https://www.instagram.com/divinedripluxe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-      Message Us on Instagram 💬
-    </a>
+    <p>Have questions or need help with an order? Reach out anytime — we’d love to assist you!</p>
+    <a class="button" href="https://www.instagram.com/divinedripluxe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Message Us on Instagram 💬</a>
   </section>
 
+  <!-- Footer -->
   <footer>
-    © 2025 DivineDripLuxe · All Rights Reserved  
+    © 2025 DivineDripLuxe · All Rights Reserved
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('show');
+    }
+  </script>
+
 </body>
 </html>
